@@ -1,0 +1,23 @@
+server:
+  port: 29001
+
+spring:
+  datasource:
+      url: jdbc:mysql://127.0.0.1:23307/resource-note-user?useUnicode=true&characterEncoding=utf8&zeroDateTimeBehavior=convertToNull&useSSL=true&serverTimezone=GMT%2B8
+      hikari:
+        driver-class-name: com.mysql.cj.jdbc.Driver
+        username: root
+        password: localDocker@mysql
+
+# mybatis-plus的逻辑删除配置 0为已删除 1为未删除
+mybatis-plus:
+  global-config:
+    db-config:
+      # 逻辑已删除值(默认为 1)
+      logic-delete-value: 1
+      # 逻辑未删除值(默认为 0)
+      logic-not-delete-value: 0
+  type-aliases-package: com.kele.resourcenoteuser.domain.entity
+  mapper-locations: classpath:/mybatis-mappers/*
+  configuration:
+    mapUnderscoreToCamelCase: true
