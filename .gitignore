@@ -1,0 +1,7 @@
+**/target/
+**/**/target/
+**/.idea/
+**/log/
+**/*.iml
+**/spy.log
+*/.DS_Store
