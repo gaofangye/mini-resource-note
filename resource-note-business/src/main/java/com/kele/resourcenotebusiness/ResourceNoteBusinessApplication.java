@@ -2,6 +2,8 @@ package com.kele.resourcenotebusiness;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
+import org.springframework.web.client.RestTemplate;
 
 @SpringBootApplication
 public class ResourceNoteBusinessApplication {
@@ -10,4 +12,13 @@ public class ResourceNoteBusinessApplication {
         SpringApplication.run(ResourceNoteBusinessApplication.class, args);
     }
 
+    /**
+     * http 调用
+     *
+     * @return RestTemplate
+     */
+    @Bean
+    public RestTemplate restTemplate() {
+        return new RestTemplate();
+    }
 }

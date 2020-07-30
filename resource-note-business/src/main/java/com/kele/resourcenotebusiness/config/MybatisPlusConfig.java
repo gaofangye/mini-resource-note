@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * @author gaofangye
  */
 @Configuration
-@MapperScan("com.kele.resourcenotebusiness.data")
+@MapperScan("com.kele.resourcenotebusiness.dao")
 public class MybatisPlusConfig {
 
     /**
