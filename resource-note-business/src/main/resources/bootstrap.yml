@@ -1,0 +1,12 @@
+spring:
+  application:
+      name: mini-resource-business
+  cloud:
+      nacos:
+        discovery:
+          server-addr: 127.0.0.1:18001
+          group: mini-resource-cloud
+        config:
+          server-addr: 127.0.0.1:18001
+          group: mini-resource-cloud
+          file-extension: yaml
