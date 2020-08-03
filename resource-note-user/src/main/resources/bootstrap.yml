@@ -6,6 +6,10 @@ spring:
       discovery:
         server-addr: 127.0.0.1:18001
         group: mini-resource-cloud
+        # 名称空间，value： 在 nacos 中创建的名称空间的 命名空间ID
+        # namespace: 51a76581-77cc-4e71-9e8f-7958cd8cbcc2
+        # 集群名称
+        # cluster-name: HZ
       config:
         server-addr: 127.0.0.1:18001
         group: mini-resource-cloud
