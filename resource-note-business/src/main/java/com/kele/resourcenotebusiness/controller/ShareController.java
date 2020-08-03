@@ -10,17 +10,11 @@ import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cloud.client.ServiceInstance;
-import org.springframework.cloud.client.discovery.DiscoveryClient;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
-
-import java.util.List;
-import java.util.concurrent.ThreadLocalRandom;
-import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -40,25 +34,17 @@ public class ShareController {
     final IShareService shareService;
     private @NonNull
     final RestTemplate restTemplate;
-    private @NonNull
-    final DiscoveryClient discoveryClient;
 
 
     @GetMapping("{id}")
     public ShareDTO findById(@PathVariable Long id) {
         Share share = shareService.getById(id);
 
-        List<ServiceInstance> instances = discoveryClient.getInstances("mini-resource-user");
-        List<String> urlList = instances.stream().map(instance -> instance.getUri().toString() + "/user/1")
-                .collect(Collectors.toList());
-
-        int number = ThreadLocalRandom.current().nextInt(urlList.size());
-        String requestUrl = urlList.get(number);
-        log.debug("请求用户中心地址：" + requestUrl);
         UserDTO userDTO = restTemplate.getForObject(
-                requestUrl,
-                UserDTO.class
+                "http://mini-resource-user/user/{id}",
+                UserDTO.class, share.getUserId()
         );
+
 
         ShareDTO shareDTO = ShareDTO.builder().build();
         BeanUtils.copyProperties(share, shareDTO);
