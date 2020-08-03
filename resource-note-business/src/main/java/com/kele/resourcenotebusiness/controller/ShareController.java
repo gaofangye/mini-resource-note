@@ -7,6 +7,7 @@ import com.kele.resourcenotebusiness.domain.entity.share.Share;
 import com.kele.resourcenotebusiness.service.IShareService;
 import lombok.NonNull;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cloud.client.ServiceInstance;
@@ -18,6 +19,8 @@ import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
+import java.util.concurrent.ThreadLocalRandom;
+import java.util.stream.Collectors;
 
 /**
  * <p>
@@ -27,6 +30,7 @@ import java.util.List;
  * @author gaofangye
  * @since 2020-07-24
  */
+@Slf4j
 @RequiredArgsConstructor(onConstructor = @__(@Autowired))
 @RestController
 @RequestMapping("/share")
@@ -45,12 +49,14 @@ public class ShareController {
         Share share = shareService.getById(id);
 
         List<ServiceInstance> instances = discoveryClient.getInstances("mini-resource-user");
-        String url = instances.stream().map(instance -> instance.getUri().toString() + "/user/1")
-                .findFirst()
-                .orElseThrow(() -> new IllegalArgumentException("当前实例不存在"));
+        List<String> urlList = instances.stream().map(instance -> instance.getUri().toString() + "/user/1")
+                .collect(Collectors.toList());
 
+        int number = ThreadLocalRandom.current().nextInt(urlList.size());
+        String requestUrl = urlList.get(number);
+        log.debug("请求用户中心地址：" + requestUrl);
         UserDTO userDTO = restTemplate.getForObject(
-                url,
+                requestUrl,
                 UserDTO.class
         );
 
