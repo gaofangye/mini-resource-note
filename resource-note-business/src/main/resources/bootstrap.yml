@@ -10,3 +10,8 @@ spring:
           server-addr: 127.0.0.1:18001
           group: mini-resource-cloud
           file-extension: yaml
+
+logging:
+  level:
+    com.kele.resourcenotebusiness: debug
+
