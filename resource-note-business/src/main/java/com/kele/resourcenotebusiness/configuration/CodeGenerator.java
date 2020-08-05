@@ -1,4 +1,4 @@
-package com.kele.resourcenoteuser.config;
+package com.kele.resourcenotebusiness.configuration;
 
 import com.baomidou.mybatisplus.annotation.DbType;
 import com.baomidou.mybatisplus.generator.AutoGenerator;
@@ -7,7 +7,6 @@ import com.baomidou.mybatisplus.generator.config.*;
 import com.baomidou.mybatisplus.generator.config.po.TableInfo;
 import com.baomidou.mybatisplus.generator.config.rules.NamingStrategy;
 import com.baomidou.mybatisplus.generator.engine.AbstractTemplateEngine;
-import com.kele.resourcenoteuser.config.mybatisplus.ResourceGlobalConfig;
 
 import java.util.Collections;
 import java.util.HashMap;
@@ -19,9 +18,9 @@ import java.util.Map;
 public class CodeGenerator extends AbstractTemplateEngine {
     public static void main(String[] args) {
         //填写包名
-        String packageName = "com.kele.resourcenoteuser";
+        String packageName = "com.kele.resourcenotebusiness";
         //表名
-        generateByTables(packageName, "bonus_event_log");
+        generateByTables(packageName, "share");
     }
 
     /**
@@ -31,9 +30,9 @@ public class CodeGenerator extends AbstractTemplateEngine {
      * @param tableNames
      */
     private static void generateByTables(String packageName, String... tableNames) {
-        GlobalConfig config = new ResourceGlobalConfig();
+        GlobalConfig config = new GlobalConfig();
         //数据库名
-        String dbUrl = "jdbc:mysql://127.0.0.1:23308/resource-note-user";
+        String dbUrl = "jdbc:mysql://127.0.0.1:23308/resource-note-business";
         DataSourceConfig dataSourceConfig = new DataSourceConfig();
         dataSourceConfig.setDbType(DbType.MYSQL)
                 .setUrl(dbUrl)
@@ -53,7 +52,7 @@ public class CodeGenerator extends AbstractTemplateEngine {
         config.setActiveRecord(false)
                 .setAuthor("gaofangye")
                 //填写自己的java路径
-                .setOutputDir("C:\\dev\\workspace\\personalSpace\\mini\\mini-resource-note\\resource-note-user\\src\\main\\java")
+                .setOutputDir("C:\\dev\\workspace\\personalSpace\\mini\\mini-resource-note\\resource-note-business\\src\\main\\java")
                 .setFileOverride(true);
         config.setMapperName("%sDao");
         config.setXmlName("%sDao");
@@ -69,7 +68,7 @@ public class CodeGenerator extends AbstractTemplateEngine {
         packageConfig.setController("controller");
         packageConfig.setService("service");
         packageConfig.setServiceImpl("service.impl");
-        packageConfig.setEntity("domain.entity.user");
+        packageConfig.setEntity("domain.entity.share");
         packageConfig.setMapper("dao");
         // 注入自定义配置，可以在 VM 中使用 cfg.abc 设置的值
         autoGenerator.setCfg(
@@ -85,15 +84,12 @@ public class CodeGenerator extends AbstractTemplateEngine {
                             // 自定义输出文件目录
                             @Override
                             public String outputFile(TableInfo tableInfo) {
-                                return "C:\\dev\\workspace\\personalSpace\\mini\\mini-resource-note\\resource-note-user\\src\\main\\resources\\mybatis-mappers\\" + tableInfo.getEntityName() + "Dao.xml";
+                                return "C:\\dev\\workspace\\personalSpace\\mini\\mini-resource-note\\resource-note-business\\src\\main\\resources\\mybatis-mappers\\" + tableInfo.getEntityName() + "Dao.xml";
                             }
                         }))).setTemplate(
                 // 关闭默认 xml 生成，调整生成 至 根目录
                 new TemplateConfig().setXml(null)
-                        .setEntity("templates/entity.java.vm")
-                        .setController("templates/controller.java.vm")
-                        .setServiceImpl("templates/serviceImpl.java.vm")
-        );
+                        .setEntity("templates/entity.java.vm"));
         autoGenerator.setPackageInfo(packageConfig);
         autoGenerator.execute();
     }

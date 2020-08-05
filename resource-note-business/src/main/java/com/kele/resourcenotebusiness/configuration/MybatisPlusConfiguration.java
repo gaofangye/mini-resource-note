@@ -1,4 +1,4 @@
-package com.kele.resourcenoteuser.config;
+package com.kele.resourcenotebusiness.configuration;
 
 import com.baomidou.mybatisplus.extension.plugins.OptimisticLockerInterceptor;
 import com.baomidou.mybatisplus.extension.plugins.PaginationInterceptor;
@@ -12,8 +12,8 @@ import org.springframework.context.annotation.Configuration;
  * @author gaofangye
  */
 @Configuration
-@MapperScan("com.kele.resourcenoteuser.dao")
-public class MybatisPlusConfig {
+@MapperScan("com.kele.resourcenotebusiness.dao")
+public class MybatisPlusConfiguration {
 
     /**
      * 乐观锁插件 version

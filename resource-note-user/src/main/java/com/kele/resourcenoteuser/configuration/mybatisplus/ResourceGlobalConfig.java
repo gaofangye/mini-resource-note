@@ -1,4 +1,4 @@
-package com.kele.resourcenoteuser.config.mybatisplus;
+package com.kele.resourcenoteuser.configuration.mybatisplus;
 
 import com.baomidou.mybatisplus.generator.config.GlobalConfig;
 import lombok.Data;
