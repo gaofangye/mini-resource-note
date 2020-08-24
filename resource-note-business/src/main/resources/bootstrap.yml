@@ -15,3 +15,8 @@ logging:
   level:
     com.kele.resourcenotebusiness: debug
 
+# 修改调用对应微服务的 ribbon 负载均衡策略
+mini-resource-user:
+  ribbon:
+    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+

@@ -10,7 +10,7 @@ import org.springframework.context.annotation.Configuration;
  *
  * @author gaofangye
  */
-@Configuration
+//@Configuration
 public class RibbonConfiguration {
 
     /**
@@ -18,8 +18,8 @@ public class RibbonConfiguration {
      *
      * @return IRule
      */
-    @Bean
-    public IRule rule() {
-        return new RandomRule();
-    }
+//    @Bean
+//    public IRule rule() {
+//        return new RandomRule();
+//    }
 }
