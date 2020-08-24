@@ -4,10 +4,10 @@ spring:
   cloud:
       nacos:
         discovery:
-          server-addr: 127.0.0.1:18001
+          server-addr: ${nacos.url}:18001
           group: mini-resource-cloud
         config:
-          server-addr: 127.0.0.1:18001
+          server-addr: ${nacos.url}:18001
           group: mini-resource-cloud
           file-extension: yaml
 
@@ -16,7 +16,7 @@ logging:
     com.kele.resourcenotebusiness: debug
 
 # 修改调用对应微服务的 ribbon 负载均衡策略
-mini-resource-user:
-  ribbon:
-    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
+#mini-resource-user:
+#  ribbon:
+#    NFLoadBalancerRuleClassName: com.netflix.loadbalancer.RandomRule
 
